@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { FloatingSocials } from "@/components/FloatingSocials"
+import Link from "next/link"
 import {
   GraduationCap,
   Mail,
@@ -12,6 +14,7 @@ import {
   Database,
   Globe,
   Cpu,
+  ArrowLeft,
   ChevronDown,
   Send,
   Github,
@@ -25,51 +28,77 @@ import {
 
 // ===================== DATA =====================
 
-const education = [
+export const education = [
   {
     id: 1,
     degree: "Master of Computer Applications (MCA)",
     institution: "D.Y. Patil College",
-    year: "Completed",
+    year: "2023 - 2025",
+    status: "Completed",
     icon: "🎓",
     color: "#6c63ff",
     description: "Advanced studies in computer science, software engineering, and modern application development.",
+    details: [
+      "Specialization in Full Stack Development",
+      "Advanced Database Management Systems",
+      "Cloud Computing & Virtualization",
+      "Artificial Intelligence & Machine Learning basics",
+    ],
+    grade: "Distinction",
+    projects: ["E-Commerce Platform", "Real-time Chat App"],
   },
   {
     id: 2,
     degree: "Bachelor of Computer Applications (BCA)",
     institution: "D.R. Mane College, Kagal",
-    year: "Completed",
+    year: "2020 - 2023",
+    status: "Completed",
     icon: "🎓",
     color: "#ff6584",
     description: "Foundation in programming, database management, networking, and software development.",
+    details: [
+      "Object-Oriented Programming with Java & C++",
+      "Web Technologies (HTML, CSS, JS)",
+      "Software Engineering principles",
+      "Networking & Data Communication",
+    ],
+    grade: "First Class with Distinction",
   },
   {
     id: 3,
     degree: "12th Standard (HSC)",
     institution: "D.R. Mane College, Kagal",
-    year: "Completed",
+    year: "2019 - 2020",
+    status: "Completed",
     icon: "📚",
     color: "#43d9ad",
     description: "Higher Secondary Certificate from Maharashtra State Board.",
+    details: [
+      "Stream: Science",
+      "Focus on Information Technology & Mathematics",
+    ],
   },
   {
     id: 4,
     degree: "11th Standard",
     institution: "D.R. Mane College, Kagal",
-    year: "Completed",
+    year: "2018 - 2019",
+    status: "Completed",
     icon: "📖",
     color: "#ffa500",
     description: "Junior College from Maharashtra State Board.",
+    details: ["Academic excellence in Science subjects"],
   },
   {
     id: 5,
     degree: "10th Standard (SSC)",
     institution: "Sidhanerali Vidyalay and Junior College Sidhanerali",
-    year: "Completed",
+    year: "2017 - 2018",
+    status: "Completed",
     icon: "🏫",
     color: "#ff4757",
     description: "Secondary School Certificate from Maharashtra State Board.",
+    details: ["General subjects with strong performance in Technical studies"],
   },
 ]
 
@@ -85,6 +114,33 @@ const stats = [
   { label: "Degrees Earned", value: "2", icon: <Award size={20} />, color: "#ff6584" },
   { label: "Projects Built", value: "15+", icon: <Zap size={20} />, color: "#43d9ad" },
   { label: "Technologies", value: "20+", icon: <Star size={20} />, color: "#ffa500" },
+]
+
+const projects = [
+  {
+    id: 1,
+    title: "E-Commerce Revolution",
+    description: "A full-scale online shopping experience with real-time inventory and secure payments.",
+    tech: ["Next.js", "TypeScript", "Tailwind", "Supabase"],
+    image: "/modern-office-dashboard.png",
+    link: "#",
+  },
+  {
+    id: 2,
+    title: "Smart Dairy Analytics",
+    description: "IoT integrated dashboard for monitoring milk quality and collection efficiency.",
+    tech: ["React", "Express", "MongoDB", "Chart.js"],
+    image: "/modern-dairy-farm.png",
+    link: "#",
+  },
+  {
+    id: 3,
+    title: "Jewellery Management Pro",
+    description: "Inventory and billing system for high-end retail jewellery outlets.",
+    tech: ["Electron", "Node.js", "SQLite"],
+    image: "/jewelry-store-system.png",
+    link: "#",
+  },
 ]
 
 // ===================== ANIMATED COUNTER =====================
@@ -164,15 +220,46 @@ function SkillCard({ skill }: { skill: typeof skills[0] }) {
   )
 }
 
+// ===================== PROJECT CARD =====================
+function ProjectCard({ project }: { project: typeof projects[0] }) {
+  return (
+    <div className="glass-card group" style={{ overflow: "hidden", display: "flex", flexDirection: "column" }}>
+      <div style={{ position: "relative", height: "200px", background: "rgba(0,0,0,0.2)" }}>
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }}
+          className="group-hover:scale-110"
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,15,0.8), transparent)" }} />
+        <div style={{ position: "absolute", bottom: "1rem", left: "1rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+           {project.tech.map(t => (
+             <span key={t} style={{ fontSize: "0.65rem", padding: "2px 8px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", backdropFilter: "blur(4px)" }}>{t}</span>
+           ))}
+        </div>
+      </div>
+      <div style={{ padding: "1.5rem", flex: 1, display: "flex", flexDirection: "column" }}>
+         <h4 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.5rem", fontFamily: "var(--font-space-grotesk), sans-serif" }}>{project.title}</h4>
+         <p style={{ fontSize: "0.9rem", color: "var(--muted-foreground)", marginBottom: "1.5rem", flex: 1 }}>{project.description}</p>
+         <button className="btn-outline" style={{ width: "100%", padding: "0.5rem" }}>View Project</button>
+      </div>
+    </div>
+  )
+}
+
 // ===================== EDUCATION CARD =====================
 function EducationCard({ edu, index }: { edu: typeof education[0]; index: number }) {
   return (
-    <div
+    <Link 
+      href={`/education/${edu.id}`}
       style={{
         display: "flex",
         gap: "1.5rem",
         animation: `fadeInUp 0.6s ease ${index * 0.1}s both`,
+        textDecoration: "none",
+        cursor: "pointer"
       }}
+      className="group"
     >
       {/* Timeline indicator */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
@@ -188,7 +275,9 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
             justifyContent: "center",
             fontSize: "1.3rem",
             flexShrink: 0,
+            transition: "all 0.3s ease"
           }}
+          className="group-hover:scale-110 group-hover:rotate-12"
         >
           {edu.icon}
         </div>
@@ -213,6 +302,7 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
           flex: 1,
           marginBottom: index < education.length - 1 ? "1.25rem" : "0",
           borderLeft: `3px solid ${edu.color}`,
+          transition: "transform 0.3s ease, border-color 0.3s ease"
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.5rem" }}>
@@ -225,6 +315,7 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
                 marginBottom: "0.3rem",
                 color: "var(--foreground)",
               }}
+              className="group-hover:text-[#6c63ff] transition-colors"
             >
               {edu.degree}
             </h3>
@@ -264,8 +355,11 @@ function EducationCard({ edu, index }: { edu: typeof education[0]; index: number
         <p style={{ color: "var(--muted-foreground)", fontSize: "0.875rem", marginTop: "0.75rem", lineHeight: 1.6 }}>
           {edu.description}
         </p>
+        <div style={{ marginTop: "1rem", display: "flex", alignItems: "center", gap: "0.5rem", color: edu.color, fontSize: "0.85rem", fontWeight: 600, opacity: 0 }} className="group-hover:opacity-100 transition-opacity">
+           See Details <ArrowLeft size={14} style={{ transform: "rotate(180deg)" }} />
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
@@ -400,9 +494,10 @@ export default function HomePage() {
             gap: "3rem",
             alignItems: "center",
           }}
+          className="md:grid-cols-[1fr_auto] grid-cols-1"
         >
           {/* Left Content */}
-          <div className="animate-fade-in-up">
+          <div className="animate-fade-in-up md:order-1 order-2">
             {/* Badge */}
             <div
               style={{
@@ -478,13 +573,11 @@ export default function HomePage() {
 
             {/* CTA Buttons */}
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-              <a href="#contact" className="btn-primary">
-                <Mail size={18} />
-                Get In Touch
+              <a href="#contact" className="btn-primary" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <Mail size={18} /> Get In Touch
               </a>
-              <a href="#education" className="btn-outline">
-                <GraduationCap size={18} />
-                My Journey
+              <a href="/resume.pdf" target="_blank" className="btn-outline" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <BookOpen size={18} /> View Resume
               </a>
             </div>
 
@@ -530,19 +623,22 @@ export default function HomePage() {
             </div>
           </div>
 
+          <FloatingSocials />
+
           {/* Right - Avatar */}
           <div
-            className="animate-float hidden lg:block"
+            className="animate-float lg:block md:order-2 order-1"
             style={{ position: "relative", flexShrink: 0 }}
           >
             <div
               className="animate-pulse-glow"
               style={{
-                width: "280px",
-                height: "280px",
+                width: "clamp(240px, 30vw, 320px)",
+                height: "clamp(240px, 30vw, 320px)",
                 borderRadius: "50%",
                 background: "linear-gradient(135deg, #6c63ff 0%, #ff6584 50%, #43d9ad 100%)",
                 padding: "4px",
+                margin: "0 auto"
               }}
             >
               <div
@@ -589,6 +685,7 @@ export default function HomePage() {
                 gap: "0.5rem",
                 boxShadow: "0 8px 24px rgba(108,99,255,0.2)",
               }}
+              className="hidden sm:flex"
             >
               <span style={{ fontSize: "1.2rem" }}>🎓</span>
               <div>
@@ -610,6 +707,7 @@ export default function HomePage() {
                 gap: "0.5rem",
                 boxShadow: "0 8px 24px rgba(255,101,132,0.2)",
               }}
+              className="hidden sm:flex"
             >
               <span style={{ fontSize: "1.2rem" }}>💻</span>
               <div>
@@ -686,203 +784,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== ABOUT SECTION ===== */}
-      <section id="about" style={{ padding: "6rem 1.5rem" }}>
+      {/* ===== PROJECTS SECTION ===== */}
+      <section id="projects" style={{ padding: "6rem 1.5rem" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
             <p style={{ color: "#6c63ff", fontWeight: 600, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>
-              Who I Am
+              My Works
             </p>
-            <h2 className="section-title">About <span className="gradient-text">Me</span></h2>
+            <h2 className="section-title">Featured <span className="gradient-text">Projects</span></h2>
             <div className="section-line" />
-            <p className="section-subtitle">
-              Get to know me better — my background, passion, and what drives me
-            </p>
+            <p className="section-subtitle">A collection of my recent academic and personal development projects</p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "2rem",
-              alignItems: "center",
+          <div 
+            style={{ 
+              display: "grid", 
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+              gap: "2.5rem" 
             }}
           >
-            {/* About Text */}
-            <div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-space-grotesk), sans-serif",
-                  fontSize: "1.5rem",
-                  fontWeight: 700,
-                  marginBottom: "1.5rem",
-                }}
-              >
-                Hello! I&apos;m{" "}
-                <span className="gradient-text">Rutuja Rajaram Patil</span>
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem", color: "var(--muted-foreground)", lineHeight: 1.8 }}>
-                <p>
-                  I&apos;m a passionate Full Stack Developer and MCA graduate from Maharashtra. 
-                  My journey in technology has been fueled by curiosity and a love for creating 
-                  digital solutions that make a real difference.
-                </p>
-                <p>
-                  With a strong academic foundation spanning from SSC at Sidhanerali Vidyalay 
-                  to my MCA at D.Y. Patil College, I&apos;ve built expertise in modern web 
-                  technologies, databases, and software engineering practices.
-                </p>
-                <p>
-                  When I&apos;m not coding, I enjoy exploring new technologies, contributing to 
-                  projects, and continuously learning to stay updated with the evolving tech landscape.
-                </p>
-              </div>
-
-              {/* Contact Info */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "1.75rem" }}>
-                {[
-                  { icon: <MapPin size={16} />, text: "Bamani", color: "#43d9ad" },
-                  { icon: <Mail size={16} />, text: "rutujarajarampatil2003@gmail.com", color: "#ff6584" },
-                  { icon: <Phone size={16} />, text: "+91 7066704913", color: "#6c63ff" },
-                ].map((item) => (
-                  <div key={item.text} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                    <div style={{ color: item.color, flexShrink: 0 }}>{item.icon}</div>
-                    <span style={{ color: "var(--muted-foreground)", fontSize: "0.9rem" }}>{item.text}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                <a href="#contact" className="btn-primary">
-                  <Mail size={16} /> Contact Me
-                </a>
-                <a href="#skills" className="btn-outline">
-                  <Code size={16} /> My Skills
-                </a>
-              </div>
-            </div>
-
-            {/* Profile Card */}
-            <div>
-              <div
-                className="glass-card"
-                style={{
-                  padding: "2.5rem",
-                  textAlign: "center",
-                  borderTop: "3px solid #6c63ff",
-                }}
-              >
-                {/* Avatar */}
-                <div
-                  style={{
-                    width: "120px",
-                    height: "120px",
-                    borderRadius: "50%",
-                    background: "linear-gradient(135deg, #6c63ff 0%, #ff6584 100%)",
-                    padding: "3px",
-                    margin: "0 auto 1.5rem",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "50%",
-                      background: "var(--background)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "3.5rem",
-                      overflow: "hidden",
-                      position: "relative"
-                    }}
-                  >
-                    <img 
-                      src="/rutuja.jpg" 
-                      alt="Rutuja Patil" 
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (fallback) fallback.style.display = 'flex';
-                      }}
-                    />
-                    <div style={{ display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', position: 'absolute' }}>
-                      👨‍💻
-                    </div>
-                  </div>
+             {projects.map((proj, idx) => (
+                <div key={idx} style={{ animation: `fadeInUp 0.6s ease ${idx * 0.15}s both` }}>
+                   <ProjectCard project={proj} />
                 </div>
-
-                <h3
-                  style={{
-                    fontFamily: "var(--font-space-grotesk), sans-serif",
-                    fontSize: "1.3rem",
-                    fontWeight: 800,
-                    marginBottom: "0.25rem",
-                  }}
-                >
-                  Rutuja Rajaram Patil
-                </h3>
-                <p style={{ color: "#6c63ff", fontWeight: 600, fontSize: "0.9rem", marginBottom: "1.5rem" }}>
-                  Full Stack Developer
-                </p>
-
-                <div style={{ borderTop: "1px solid var(--glass-border)", paddingTop: "1.5rem" }}>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "1rem",
-                      textAlign: "center",
-                    }}
-                  >
-                    {[
-                      { label: "Degree", value: "MCA" },
-                      { label: "Location", value: "Maharashtra" },
-                      { label: "Specialty", value: "Web Dev" },
-                      { label: "Status", value: "Available" },
-                    ].map((item) => (
-                      <div key={item.label}>
-                        <div style={{ color: "var(--muted-foreground)", fontSize: "0.75rem", marginBottom: "0.2rem" }}>
-                          {item.label}
-                        </div>
-                        <div style={{ color: "var(--foreground)", fontWeight: 700, fontSize: "0.9rem" }}>
-                          {item.value}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Availability Badge */}
-                <div
-                  style={{
-                    marginTop: "1.5rem",
-                    background: "rgba(67,217,173,0.12)",
-                    border: "1px solid rgba(67,217,173,0.3)",
-                    borderRadius: "50px",
-                    padding: "0.5rem 1.25rem",
-                    color: "#43d9ad",
-                    fontSize: "0.85rem",
-                    fontWeight: 600,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span
-                    style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: "#43d9ad",
-                      animation: "pulse-glow 2s infinite",
-                    }}
-                  />
-                  Open to Work
-                </div>
-              </div>
-            </div>
+             ))}
           </div>
         </div>
       </section>
@@ -897,7 +822,7 @@ export default function HomePage() {
             <h2 className="section-title">My <span style={{ background: "linear-gradient(135deg, #ff6584 0%, #6c63ff 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Education</span></h2>
             <div className="section-line" style={{ background: "linear-gradient(135deg, #ff6584 0%, #6c63ff 100%)" }} />
             <p className="section-subtitle">
-              My educational background — from school to post-graduation
+              Detailed breakdown of my educational milestones (Click cards for details)
             </p>
           </div>
 
