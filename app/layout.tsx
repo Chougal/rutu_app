@@ -16,13 +16,13 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "Abhishek Chougale | Full Stack Developer",
+  title: "Rutuja Patil | Full Stack Developer",
   description:
-    "Personal portfolio of Abhishek Vishnu Chougale — MCA graduate, passionate full-stack developer from Maharashtra. Explore my education, skills, and projects.",
-  keywords: ["Abhishek Chougale", "MCA", "Full Stack Developer", "Portfolio", "React", "Next.js"],
-  authors: [{ name: "Abhishek Vishnu Chougale" }],
+    "Personal portfolio of Rutuja Rajaram Patil — MCA graduate, passionate full-stack developer from Maharashtra. Explore my education, skills, and projects.",
+  keywords: ["Rutuja Patil", "MCA", "Full Stack Developer", "Portfolio", "React", "Next.js"],
+  authors: [{ name: "Rutuja Rajaram Patil" }],
   openGraph: {
-    title: "Abhishek Chougale | Full Stack Developer",
+    title: "Rutuja Patil | Full Stack Developer",
     description: "MCA graduate | Full Stack Developer | Maharashtra",
     type: "website",
   },

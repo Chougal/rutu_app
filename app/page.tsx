@@ -47,7 +47,7 @@ const education = [
   {
     id: 3,
     degree: "12th Standard (HSC)",
-    institution: "M.H. Shinde Mahavidyalay",
+    institution: "D.R. Mane College, Kagal",
     year: "Completed",
     icon: "📚",
     color: "#43d9ad",
@@ -56,7 +56,7 @@ const education = [
   {
     id: 4,
     degree: "11th Standard",
-    institution: "M.H. Shinde Mahavidyalay",
+    institution: "D.R. Mane College, Kagal",
     year: "Completed",
     icon: "📖",
     color: "#ffa500",
@@ -65,7 +65,7 @@ const education = [
   {
     id: 5,
     degree: "10th Standard (SSC)",
-    institution: "Dattajirao Mohite Patil High School",
+    institution: "Sidhanerali Vidyalay and Junior College Sidhanerali",
     year: "Completed",
     icon: "🏫",
     color: "#ff4757",
@@ -296,7 +296,7 @@ function ContactForm() {
           <input
             type="text"
             className="contact-input"
-            placeholder="Abhishek Chougale"
+            placeholder="Rutuja Patil"
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -434,9 +434,9 @@ export default function HomePage() {
               }}
             >
               Hi, I&apos;m{" "}
-              <span className="gradient-text">Abhishek</span>
+              <span className="gradient-text">Rutuja</span>
               <br />
-              <span style={{ color: "var(--foreground)" }}>Vishnu Chougale</span>
+              <span style={{ color: "var(--foreground)" }}>Rajaram Patil</span>
             </h1>
 
             {/* Typing Effect */}
@@ -560,8 +560,8 @@ export default function HomePage() {
                 }}
               >
                 <img 
-                  src="/abhi.jpeg" 
-                  alt="Abhishek Chougale" 
+                  src="/rutuja.jpg" 
+                  alt="Rutuja Patil" 
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -719,7 +719,7 @@ export default function HomePage() {
                 }}
               >
                 Hello! I&apos;m{" "}
-                <span className="gradient-text">Abhishek Vishnu Chougale</span>
+                <span className="gradient-text">Rutuja Rajaram Patil</span>
               </h3>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem", color: "var(--muted-foreground)", lineHeight: 1.8 }}>
                 <p>
@@ -728,8 +728,8 @@ export default function HomePage() {
                   digital solutions that make a real difference.
                 </p>
                 <p>
-                  With a strong academic foundation spanning from SSC at Dattajirao Mohite Patil 
-                  school to my MCA at D.Y. Patil College, I&apos;ve built expertise in modern web 
+                  With a strong academic foundation spanning from SSC at Sidhanerali Vidyalay 
+                  to my MCA at D.Y. Patil College, I&apos;ve built expertise in modern web 
                   technologies, databases, and software engineering practices.
                 </p>
                 <p>
@@ -741,9 +741,9 @@ export default function HomePage() {
               {/* Contact Info */}
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "1.75rem" }}>
                 {[
-                  { icon: <MapPin size={16} />, text: "Balewadi, Gaganbavda, Maharashtra", color: "#43d9ad" },
-                  { icon: <Mail size={16} />, text: "abhishekchougale038@gmail.com", color: "#ff6584" },
-                  { icon: <Phone size={16} />, text: "+91 9325519485", color: "#6c63ff" },
+                  { icon: <MapPin size={16} />, text: "Bamani", color: "#43d9ad" },
+                  { icon: <Mail size={16} />, text: "rutujarajarampatil2003@gmail.com", color: "#ff6584" },
+                  { icon: <Phone size={16} />, text: "+91 7066704913", color: "#6c63ff" },
                 ].map((item) => (
                   <div key={item.text} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                     <div style={{ color: item.color, flexShrink: 0 }}>{item.icon}</div>
@@ -798,8 +798,8 @@ export default function HomePage() {
                     }}
                   >
                     <img 
-                      src="/abhi.jpeg" 
-                      alt="Abhishek Chougale" 
+                      src="/rutuja.jpg" 
+                      alt="Rutuja Patil" 
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
@@ -821,7 +821,7 @@ export default function HomePage() {
                     marginBottom: "0.25rem",
                   }}
                 >
-                  Abhishek Vishnu Chougale
+                  Rutuja Rajaram Patil
                 </h3>
                 <p style={{ color: "#6c63ff", fontWeight: 600, fontSize: "0.9rem", marginBottom: "1.5rem" }}>
                   Full Stack Developer
@@ -1003,37 +1003,37 @@ export default function HomePage() {
                 {
                   icon: <Mail size={20} />,
                   label: "Email",
-                  value: "abhishekchougale038@gmail.com",
+                  value: "rutujarajarampatil2003@gmail.com",
                   color: "#ff6584",
-                  href: "mailto:abhishekchougale038@gmail.com",
+                  href: "mailto:rutujarajarampatil2003@gmail.com",
                 },
                 {
                   icon: <Phone size={20} />,
                   label: "Phone",
-                  value: "+91 9325519485",
+                  value: "+91 7066704913",
                   color: "#6c63ff",
-                  href: "tel:+919325519485",
+                  href: "tel:+917066704913",
                 },
                 {
                   icon: <MapPin size={20} />,
                   label: "Location",
-                  value: "Balewadi, Gaganbavda, Maharashtra",
+                  value: "Bamani",
                   color: "#43d9ad",
                   href: null,
                 },
                 {
                   icon: <Github size={20} />,
                   label: "GitHub",
-                  value: "github.com/abhishek",
+                  value: "github.com",
                   color: "#8888aa",
                   href: "https://github.com",
                 },
                 {
                   icon: <Linkedin size={20} />,
                   label: "LinkedIn",
-                  value: "linkedin.com/in/abhishek-chougale",
+                  value: "linkedin.com",
                   color: "#0077b5",
-                  href: "https://www.linkedin.com/in/abhishek-chougale-573786268",
+                  href: "https://linkedin.com",
                 },
               ].map((item) => (
                 <div

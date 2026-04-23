@@ -1,4 +1,4 @@
-﻿import { Github, Linkedin, Mail, Heart } from "lucide-react"
+import { Github, Linkedin, Mail, Heart } from "lucide-react"
 
 export function Footer() {
   return (
@@ -33,10 +33,10 @@ export function Footer() {
                 marginBottom: "1rem",
               }}
             >
-              Abhishek.dev
+              Rutuja.dev
             </div>
             <p style={{ color: "var(--muted-foreground)", fontSize: "0.9rem", lineHeight: 1.7, maxWidth: "280px" }}>
-              MCA Graduate & Full Stack Developer from Balewadi, Gaganbavda, Maharashtra. Passionate about building elegant digital experiences.
+              MCA Graduate & Full Stack Developer from Bamani, Maharashtra. Passionate about building elegant digital experiences.
             </p>
             {/* Social Links */}
             <div style={{ display: "flex", gap: "0.75rem", marginTop: "1.25rem" }}>
@@ -73,7 +73,7 @@ export function Footer() {
                 <Github size={18} />
               </a>
               <a
-                href="https://www.linkedin.com/in/abhishek-chougale-573786268"
+                href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -105,7 +105,7 @@ export function Footer() {
                 <Linkedin size={18} />
               </a>
               <a
-                href="mailto:abhishekchougale038@gmail.com"
+                href="mailto:rutujarajarampatil2003@gmail.com"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -200,8 +200,8 @@ export function Footer() {
               {[
                 { degree: "MCA", college: "D.Y. Patil College" },
                 { degree: "BCA", college: "D.R. Mane College, Kagal" },
-                { degree: "12th", college: "M.H. Shinde Mahavidyalay" },
-                { degree: "10th", college: "Dattajirao Mohite Patil" },
+                { degree: "12th", college: "D.R. Mane College, Kagal" },
+                { degree: "10th", college: "Sidhanerali Vidyalay and Junior College Sidhanerali" },
               ].map((edu) => (
                 <li key={edu.degree} style={{ display: "flex", flexDirection: "column", gap: "0.15rem" }}>
                   <span
@@ -242,7 +242,7 @@ export function Footer() {
               gap: "0.4rem",
             }}
           >
-            Â© {new Date().getFullYear()} Abhishek Vishnu Chougale. Made with{" "}
+            Â© {new Date().getFullYear()} Rutuja Rajaram Patil. Made with{" "}
             <Heart size={14} style={{ color: "#ff6584", fill: "#ff6584" }} /> in Maharashtra
           </p>
           <p style={{ color: "var(--muted-foreground)", fontSize: "0.85rem" }}>
